@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
-import { MapPin, route, Navigation, Clock, Euro, User } from 'lucide-react';
+import { MapPin, Route, Navigation, Clock, Euro, User } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { toast } from 'sonner';
 import TooltipHelper from './TooltipHelper';
@@ -231,7 +231,7 @@ const GoogleMapsTransport: React.FC<GoogleMapsTransportProps> = ({ formData, upd
             disabled={isCalculating || !formData.originAddress || !formData.destinationAddress}
             className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700"
           >
-            <route className="w-4 h-4" />
+            <Route className="w-4 h-4" />
             <span>
               {isCalculating 
                 ? (language === 'gr' ? 'Υπολογισμός...' : 'Calculating...') 
@@ -244,7 +244,7 @@ const GoogleMapsTransport: React.FC<GoogleMapsTransportProps> = ({ formData, upd
         {formData.routeCalculated && (
           <div className="bg-green-50 border border-green-200 rounded-lg p-4">
             <h4 className="font-semibold text-green-800 mb-3 flex items-center space-x-2">
-              <route className="w-4 h-4" />
+              <Route className="w-4 h-4" />
               <span>{language === 'gr' ? 'Αποτελέσματα Διαδρομής' : 'Route Results'}</span>
             </h4>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">

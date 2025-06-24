@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -28,7 +27,7 @@ const ProcessingPhases: React.FC<ProcessingPhasesProps> = ({ formData, updateFor
   const addPhase = () => {
     const newPhase: ProcessingPhase = {
       id: Date.now().toString(),
-      name: language === 'el' ? 'Νέα Φάση' : 'New Phase',
+      name: language === 'gr' ? 'Νέα Φάση' : 'New Phase',
       wastePercentage: 0,
       addedWeight: 0,
       description: ''
@@ -73,7 +72,7 @@ const ProcessingPhases: React.FC<ProcessingPhasesProps> = ({ formData, updateFor
         <CardTitle className="flex items-center justify-between text-slate-800">
           <div className="flex items-center space-x-2">
             <Settings className="w-5 h-5 text-purple-600" />
-            <span>{language === 'el' ? 'Φάσεις Επεξεργασίας' : 'Processing Phases'}</span>
+            <span>{language === 'gr' ? 'Φάσεις Επεξεργασίας' : 'Processing Phases'}</span>
           </div>
           <Badge variant="secondary" className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
             <Crown className="w-3 h-3 mr-1" />
@@ -84,10 +83,10 @@ const ProcessingPhases: React.FC<ProcessingPhasesProps> = ({ formData, updateFor
       <CardContent className="p-6 space-y-4">
         <div className="text-sm text-slate-600 mb-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
           <p className="font-medium text-blue-800 mb-1">
-            {language === 'el' ? '💡 Συμβουλή:' : '💡 Tip:'}
+            {language === 'gr' ? '💡 Συμβουλή:' : '💡 Tip:'}
           </p>
           <p>
-            {language === 'el' 
+            {language === 'gr' 
               ? 'Ορίστε τις φάσεις επεξεργασίας με τη σειρά που εκτελούνται. Για κάθε φάση μπορείτε να ορίσετε απώλειες (%) ή προσθήκες βάρους (π.χ. γλάσσο).'
               : 'Define processing phases in the order they are executed. For each phase you can set losses (%) or weight additions (e.g. glazing).'
             }
@@ -101,7 +100,7 @@ const ProcessingPhases: React.FC<ProcessingPhasesProps> = ({ formData, updateFor
                 <div className="flex items-center space-x-2">
                   {getPhaseIcon(phase.name)}
                   <Badge variant="outline" className="text-xs">
-                    {language === 'el' ? 'Φάση' : 'Phase'} {index + 1}
+                    {language === 'gr' ? 'Φάση' : 'Phase'} {index + 1}
                   </Badge>
                 </div>
                 <Button
@@ -116,17 +115,17 @@ const ProcessingPhases: React.FC<ProcessingPhasesProps> = ({ formData, updateFor
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="space-y-2">
-                  <Label>{language === 'el' ? 'Όνομα Φάσης' : 'Phase Name'}</Label>
+                  <Label>{language === 'gr' ? 'Όνομα Φάσης' : 'Phase Name'}</Label>
                   <Input
                     value={phase.name}
                     onChange={(e) => updatePhase(phase.id, { name: e.target.value })}
-                    placeholder={language === 'el' ? 'π.χ. Καθάρισμα' : 'e.g. Cleaning'}
+                    placeholder={language === 'gr' ? 'π.χ. Καθάρισμα' : 'e.g. Cleaning'}
                     className="border-slate-300"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label>{language === 'el' ? 'Απώλεια (%)' : 'Waste (%)'}</Label>
+                  <Label>{language === 'gr' ? 'Απώλεια (%)' : 'Waste (%)'}</Label>
                   <Input
                     type="number"
                     step="0.1"
@@ -140,7 +139,7 @@ const ProcessingPhases: React.FC<ProcessingPhasesProps> = ({ formData, updateFor
                 </div>
 
                 <div className="space-y-2">
-                  <Label>{language === 'el' ? 'Προσθήκη Βάρους (%)' : 'Weight Addition (%)'}</Label>
+                  <Label>{language === 'gr' ? 'Προσθήκη Βάρους (%)' : 'Weight Addition (%)'}</Label>
                   <Input
                     type="number"
                     step="0.1"
@@ -153,7 +152,7 @@ const ProcessingPhases: React.FC<ProcessingPhasesProps> = ({ formData, updateFor
 
                 <div className="space-y-2 md:col-span-2 lg:col-span-1">
                   <div className="text-sm font-medium text-slate-700 mb-2">
-                    {language === 'el' ? 'Τελικό Αποτέλεσμα' : 'Net Effect'}
+                    {language === 'gr' ? 'Τελικό Αποτέλεσμα' : 'Net Effect'}
                   </div>
                   <div className="text-lg font-bold p-2 bg-gray-50 rounded border text-center">
                     {phase.wastePercentage > 0 ? `-${phase.wastePercentage}%` : ''}
@@ -165,11 +164,11 @@ const ProcessingPhases: React.FC<ProcessingPhasesProps> = ({ formData, updateFor
               </div>
 
               <div className="mt-3">
-                <Label>{language === 'el' ? 'Περιγραφή' : 'Description'}</Label>
+                <Label>{language === 'gr' ? 'Περιγραφή' : 'Description'}</Label>
                 <Textarea
                   value={phase.description}
                   onChange={(e) => updatePhase(phase.id, { description: e.target.value })}
-                  placeholder={language === 'el' 
+                  placeholder={language === 'gr' 
                     ? 'Περιγράψτε τη διαδικασία αυτής της φάσης...'
                     : 'Describe the process of this phase...'
                   }
@@ -186,22 +185,22 @@ const ProcessingPhases: React.FC<ProcessingPhasesProps> = ({ formData, updateFor
           className="w-full border-dashed border-2 border-purple-300 text-purple-600 hover:bg-purple-50 hover:border-purple-400"
         >
           <Plus className="w-4 h-4 mr-2" />
-          {language === 'el' ? 'Προσθήκη Φάσης' : 'Add Phase'}
+          {language === 'gr' ? 'Προσθήκη Φάσης' : 'Add Phase'}
         </Button>
 
         {(formData.processingPhases || []).length > 0 && (
           <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
             <h4 className="font-semibold text-blue-800 mb-2 flex items-center">
               <Settings className="w-4 h-4 mr-2" />
-              {language === 'el' ? 'Σύνοψη Επεξεργασίας' : 'Processing Summary'}
+              {language === 'gr' ? 'Σύνοψη Επεξεργασίας' : 'Processing Summary'}
             </h4>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
               <div>
-                <div className="text-gray-600">{language === 'el' ? 'Σύνολο Φάσεων' : 'Total Phases'}</div>
+                <div className="text-gray-600">{language === 'gr' ? 'Σύνολο Φάσεων' : 'Total Phases'}</div>
                 <div className="font-bold text-lg">{(formData.processingPhases || []).length}</div>
               </div>
               <div>
-                <div className="text-gray-600">{language === 'el' ? 'Συνολική Απώλεια' : 'Total Waste'}</div>
+                <div className="text-gray-600">{language === 'gr' ? 'Συνολική Απώλεια' : 'Total Waste'}</div>
                 <div className="font-bold text-lg text-red-600">
                   {(formData.processingPhases || [])
                     .reduce((sum: number, phase: ProcessingPhase) => sum + phase.wastePercentage, 0)
@@ -209,7 +208,7 @@ const ProcessingPhases: React.FC<ProcessingPhasesProps> = ({ formData, updateFor
                 </div>
               </div>
               <div>
-                <div className="text-gray-600">{language === 'el' ? 'Συνολική Προσθήκη' : 'Total Addition'}</div>
+                <div className="text-gray-600">{language === 'gr' ? 'Συνολική Προσθήκη' : 'Total Addition'}</div>
                 <div className="font-bold text-lg text-green-600">
                   +{(formData.processingPhases || [])
                     .reduce((sum: number, phase: ProcessingPhase) => sum + Math.max(0, phase.addedWeight), 0)
@@ -217,7 +216,7 @@ const ProcessingPhases: React.FC<ProcessingPhasesProps> = ({ formData, updateFor
                 </div>
               </div>
               <div>
-                <div className="text-gray-600">{language === 'el' ? 'Καθαρό Αποτέλεσμα' : 'Net Result'}</div>
+                <div className="text-gray-600">{language === 'gr' ? 'Καθαρό Αποτέλεσμα' : 'Net Result'}</div>
                 <div className="font-bold text-lg">
                   {(() => {
                     const totalWaste = (formData.processingPhases || [])
