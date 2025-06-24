@@ -23,14 +23,14 @@ const PDFExport: React.FC<PDFExportProps> = ({ results, formData }) => {
 
   const exportToPDF = async () => {
     try {
-      const title = language === 'el' ? 'Αναφορά Κοστολόγησης' : 'Costing Report';
-      const productLabel = language === 'el' ? 'Προϊόν:' : 'Product:';
-      const dateLabel = language === 'el' ? 'Ημερομηνία:' : 'Date:';
-      const basicDataLabel = language === 'el' ? 'Βασικά Στοιχεία' : 'Basic Data';
-      const resultsLabel = language === 'el' ? 'Αποτελέσματα' : 'Results';
-      const costAnalysisLabel = language === 'el' ? 'Ανάλυση Κόστους' : 'Cost Analysis';
-      const summaryLabel = language === 'el' ? 'Περίληψη με Βασικά Σημεία' : 'Summary with Key Points';
-      const keyPointsLabel = language === 'el' ? 'Βασικά Σημεία:' : 'Key Points:';
+      const title = language === 'gr' ? 'Αναφορά Κοστολόγησης' : 'Costing Report';
+      const productLabel = language === 'gr' ? 'Προϊόν:' : 'Product:';
+      const dateLabel = language === 'gr' ? 'Ημερομηνία:' : 'Date:';
+      const basicDataLabel = language === 'gr' ? 'Βασικά Στοιχεία' : 'Basic Data';
+      const resultsLabel = language === 'gr' ? 'Αποτελέσματα' : 'Results';
+      const costAnalysisLabel = language === 'gr' ? 'Ανάλυση Κόστους' : 'Cost Analysis';
+      const summaryLabel = language === 'gr' ? 'Περίληψη με Βασικά Σημεία' : 'Summary with Key Points';
+      const keyPointsLabel = language === 'gr' ? 'Βασικά Σημεία:' : 'Key Points:';
       
       // Generate chart sections if selected
       const chartSections = [];
@@ -38,9 +38,9 @@ const PDFExport: React.FC<PDFExportProps> = ({ results, formData }) => {
       if (selectedCharts.costBreakdown) {
         chartSections.push(`
           <div class="section">
-            <h2>${language === 'el' ? 'Ανάλυση Κόστους' : 'Cost Breakdown'}</h2>
+            <h2>${language === 'gr' ? 'Ανάλυση Κόστους' : 'Cost Breakdown'}</h2>
             <div class="chart-explanation">
-              <p>${language === 'el' 
+              <p>${language === 'gr' 
                 ? 'Το γράφημα δείχνει την κατανομή των κοστών ανά κατηγορία. Το μεγαλύτερο κόστος προέρχεται από την αγορά πρώτων υλών.'
                 : 'The chart shows cost distribution by category. The largest cost comes from raw material purchase.'
               }</p>
@@ -52,9 +52,9 @@ const PDFExport: React.FC<PDFExportProps> = ({ results, formData }) => {
       if (selectedCharts.profitAnalysis) {
         chartSections.push(`
           <div class="section">
-            <h2>${language === 'el' ? 'Ανάλυση Κερδοφορίας' : 'Profitability Analysis'}</h2>
+            <h2>${language === 'gr' ? 'Ανάλυση Κερδοφορίας' : 'Profitability Analysis'}</h2>
             <div class="chart-explanation">
-              <p>${language === 'el' 
+              <p>${language === 'gr' 
                 ? 'Η ανάλυση δείχνει το περιθώριο κέρδους και τη σχέση κόστους-εσόδων. Υψηλότερο περιθώριο σημαίνει καλύτερη κερδοφορία.'
                 : 'The analysis shows profit margin and cost-revenue relationship. Higher margin means better profitability.'
               }</p>
@@ -185,8 +185,8 @@ const PDFExport: React.FC<PDFExportProps> = ({ results, formData }) => {
         <body>
           <div class="header">
             <h1>${title}</h1>
-            <p><strong>${productLabel}</strong> ${formData.productName || (language === 'el' ? 'Μη καθορισμένο' : 'Not specified')}</p>
-            <p><strong>${dateLabel}</strong> ${new Date().toLocaleDateString(language === 'el' ? 'el-GR' : 'en-US')}</p>
+            <p><strong>${productLabel}</strong> ${formData.productName || (language === 'gr' ? 'Μη καθορισμένο' : 'Not specified')}</p>
+            <p><strong>${dateLabel}</strong> ${new Date().toLocaleDateString(language === 'gr' ? 'el-GR' : 'en-US')}</p>
           </div>
           
           <div class="summary">
@@ -194,23 +194,23 @@ const PDFExport: React.FC<PDFExportProps> = ({ results, formData }) => {
             <div class="key-points">
               <h4>${keyPointsLabel}</h4>
               <ul>
-                <li><strong>${language === 'el' ? 'Υπολογισμός ρυθμού ανάπτυξης:' : 'Growth rate calculation:'}</strong> ${language === 'el' 
+                <li><strong>${language === 'gr' ? 'Υπολογισμός ρυθμού ανάπτυξης:' : 'Growth rate calculation:'}</strong> ${language === 'gr' 
                   ? 'Ο υπολογισμός γίνεται με τον τύπο: (Τελική Αξία / Αρχική Αξία) - 1. Απαιτούνται η τελική και η αρχική τιμή για τον υπολογισμό του ποσοστού ανάπτυξης.'
                   : 'Calculated using: (Final Value / Initial Value) - 1. Requires final and initial values to calculate growth percentage.'
                 }</li>
-                <li><strong>${language === 'el' ? 'Επενδυτική στρατηγική:' : 'Investment strategy:'}</strong> ${language === 'el' 
+                <li><strong>${language === 'gr' ? 'Επενδυτική στρατηγική:' : 'Investment strategy:'}</strong> ${language === 'gr' 
                   ? 'Λήψη επενδυτικών αποφάσεων με βάση τον υπολογισμό του ποσοστού ανάπτυξης και την ανάλυση κινδύνου.'
                   : 'Making investment decisions based on growth rate calculation and risk analysis.'
                 }</li>
-                <li><strong>${language === 'el' ? 'Παρούσα Αξία (PV):' : 'Present Value (PV):'}</strong> ${language === 'el' 
+                <li><strong>${language === 'gr' ? 'Παρούσα Αξία (PV):' : 'Present Value (PV):'}</strong> ${language === 'gr' 
                   ? 'Διερευνάται η έννοια της παρούσας αξίας για την αξιολόγηση επενδυτικών επιλογών.'
                   : 'Exploring the concept of present value to evaluate investment options.'
                 }</li>
-                <li><strong>${language === 'el' ? 'Κόστος Ευκαιρίας:' : 'Opportunity Cost:'}</strong> ${language === 'el' 
+                <li><strong>${language === 'gr' ? 'Κόστος Ευκαιρίας:' : 'Opportunity Cost:'}</strong> ${language === 'gr' 
                   ? 'Η απόδοση που χάνετε επιλέγοντας μια επένδυση αντί για την καλύτερη εναλλακτική.'
                   : 'The return you give up by choosing one investment over the best alternative.'
                 }</li>
-                <li><strong>${language === 'el' ? 'Ανάλυση Νεκρού Σημείου:' : 'Break-even Analysis:'}</strong> ${language === 'el' 
+                <li><strong>${language === 'gr' ? 'Ανάλυση Νεκρού Σημείου:' : 'Break-even Analysis:'}</strong> ${language === 'gr' 
                   ? 'Δείχνει εύκολα την ποσότητα που απαιτείται για να καλύψει το σταθερό κόστος.'
                   : 'Easily shows the quantity required to cover fixed costs.'
                 }</li>
@@ -222,27 +222,27 @@ const PDFExport: React.FC<PDFExportProps> = ({ results, formData }) => {
             <h2>${basicDataLabel}</h2>
             <div class="grid">
               <div class="cost-item">
-                <span>${language === 'el' ? 'Τιμή Αγοράς:' : 'Purchase Price:'}</span>
-                <strong>${formData.purchasePrice || 0}€/${language === 'el' ? 'κιλό' : 'kg'}</strong>
+                <span>${language === 'gr' ? 'Τιμή Αγοράς:' : 'Purchase Price:'}</span>
+                <strong>${formData.purchasePrice || 0}€/${language === 'gr' ? 'κιλό' : 'kg'}</strong>
               </div>
               <div class="cost-item">
-                <span>${language === 'el' ? 'Ποσότητα:' : 'Quantity:'}</span>
-                <strong>${formData.quantity || 0} ${language === 'el' ? 'κιλά' : 'kg'}</strong>
+                <span>${language === 'gr' ? 'Ποσότητα:' : 'Quantity:'}</span>
+                <strong>${formData.quantity || 0} ${language === 'gr' ? 'κιλά' : 'kg'}</strong>
               </div>
               <div class="cost-item">
-                <span>${language === 'el' ? 'Απώλεια:' : 'Waste:'}</span>
+                <span>${language === 'gr' ? 'Απώλεια:' : 'Waste:'}</span>
                 <strong>${formData.waste || 0}%</strong>
               </div>
               <div class="cost-item">
-                <span>${language === 'el' ? 'Ποσοστό Γλασσαρίσματος:' : 'Glazing Percentage:'}</span>
+                <span>${language === 'gr' ? 'Ποσοστό Γλασσαρίσματος:' : 'Glazing Percentage:'}</span>
                 <strong>${formData.glazingPercent || 0}%</strong>
               </div>
               <div class="cost-item">
-                <span>${language === 'el' ? 'ΦΠΑ:' : 'VAT:'}</span>
+                <span>${language === 'gr' ? 'ΦΠΑ:' : 'VAT:'}</span>
                 <strong>${formData.vatPercent || 0}%</strong>
               </div>
               <div class="cost-item">
-                <span>${language === 'el' ? 'Περιθώριο Κέρδους:' : 'Profit Margin:'}</span>
+                <span>${language === 'gr' ? 'Περιθώριο Κέρδους:' : 'Profit Margin:'}</span>
                 <strong>${formData.profitMargin || 0}%</strong>
               </div>
             </div>
@@ -252,27 +252,27 @@ const PDFExport: React.FC<PDFExportProps> = ({ results, formData }) => {
             <h2>${resultsLabel}</h2>
             <div class="grid">
               <div class="result-box">
-                <h3>${language === 'el' ? 'Συνολικό Κόστος' : 'Total Cost'}</h3>
+                <h3>${language === 'gr' ? 'Συνολικό Κόστος' : 'Total Cost'}</h3>
                 <div class="highlight">
                   <span style="font-size: 24px; font-weight: bold;">${results?.totalCost?.toFixed(2) || 0}€</span>
                 </div>
               </div>
               <div class="result-box">
-                <h3>${language === 'el' ? 'Τιμή Πώλησης' : 'Selling Price'}</h3>
+                <h3>${language === 'gr' ? 'Τιμή Πώλησης' : 'Selling Price'}</h3>
                 <div class="highlight">
-                  <span style="font-size: 24px; font-weight: bold;">${results?.sellingPrice?.toFixed(2) || 0}€/${language === 'el' ? 'κιλό' : 'kg'}</span>
+                  <span style="font-size: 24px; font-weight: bold;">${results?.sellingPrice?.toFixed(2) || 0}€/${language === 'gr' ? 'κιλό' : 'kg'}</span>
                 </div>
               </div>
               <div class="result-box">
-                <h3>${language === 'el' ? 'Κέρδος ανά Κιλό' : 'Profit per Kg'}</h3>
+                <h3>${language === 'gr' ? 'Κέρδος ανά Κιλό' : 'Profit per Kg'}</h3>
                 <div class="highlight">
                   <span style="font-size: 24px; font-weight: bold;">${results?.profitPerKg?.toFixed(2) || 0}€</span>
                 </div>
               </div>
               <div class="result-box">
-                <h3>${language === 'el' ? 'Καθαρό Βάρος' : 'Net Weight'}</h3>
+                <h3>${language === 'gr' ? 'Καθαρό Βάρος' : 'Net Weight'}</h3>
                 <div class="highlight">
-                  <span style="font-size: 24px; font-weight: bold;">${results?.netWeight?.toFixed(2) || 0} ${language === 'el' ? 'κιλά' : 'kg'}</span>
+                  <span style="font-size: 24px; font-weight: bold;">${results?.netWeight?.toFixed(2) || 0} ${language === 'gr' ? 'κιλά' : 'kg'}</span>
                 </div>
               </div>
             </div>
@@ -281,27 +281,27 @@ const PDFExport: React.FC<PDFExportProps> = ({ results, formData }) => {
           <div class="section">
             <h2>${costAnalysisLabel}</h2>
             <div class="cost-item">
-              <span>${language === 'el' ? 'Κόστος Αγοράς:' : 'Purchase Cost:'}</span>
+              <span>${language === 'gr' ? 'Κόστος Αγοράς:' : 'Purchase Cost:'}</span>
               <strong>${results?.purchaseCost?.toFixed(2) || 0}€</strong>
             </div>
             <div class="cost-item">
-              <span>${language === 'el' ? 'Κόστος Εργασίας:' : 'Labor Cost:'}</span>
+              <span>${language === 'gr' ? 'Κόστος Εργασίας:' : 'Labor Cost:'}</span>
               <strong>${results?.laborCost?.toFixed(2) || 0}€</strong>
             </div>
             <div class="cost-item">
-              <span>${language === 'el' ? 'Κόστος Συσκευασίας:' : 'Packaging Cost:'}</span>
+              <span>${language === 'gr' ? 'Κόστος Συσκευασίας:' : 'Packaging Cost:'}</span>
               <strong>${results?.packagingCost?.toFixed(2) || 0}€</strong>
             </div>
             <div class="cost-item">
-              <span>${language === 'el' ? 'Κόστος Μεταφοράς:' : 'Transport Cost:'}</span>
+              <span>${language === 'gr' ? 'Κόστος Μεταφοράς:' : 'Transport Cost:'}</span>
               <strong>${results?.transportCost?.toFixed(2) || 0}€</strong>
             </div>
             <div class="cost-item">
-              <span>${language === 'el' ? 'Επιπλέον Κόστη:' : 'Additional Costs:'}</span>
+              <span>${language === 'gr' ? 'Επιπλέον Κόστη:' : 'Additional Costs:'}</span>
               <strong>${results?.additionalCosts?.toFixed(2) || 0}€</strong>
             </div>
             <div class="cost-item">
-              <span>${language === 'el' ? 'ΦΠΑ:' : 'VAT:'}</span>
+              <span>${language === 'gr' ? 'ΦΠΑ:' : 'VAT:'}</span>
               <strong>${results?.vatAmount?.toFixed(2) || 0}€</strong>
             </div>
           </div>
@@ -309,7 +309,7 @@ const PDFExport: React.FC<PDFExportProps> = ({ results, formData }) => {
           ${chartSections.join('')}
 
           <div class="footer">
-            <p>${language === 'el' ? 'Αναφορά παραχθείσα από τον Υπολογιστή Κόστους Pro' : 'Report generated by Cost Calculator Pro'}</p>
+            <p>${language === 'gr' ? 'Αναφορά παραχθείσα από τον Υπολογιστή Κόστους Pro' : 'Report generated by Cost Calculator Pro'}</p>
             <p>Design by Alexandros Kopanakis</p>
           </div>
         </body>
@@ -321,20 +321,20 @@ const PDFExport: React.FC<PDFExportProps> = ({ results, formData }) => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `${language === 'el' ? 'κοστολογηση' : 'costing'}_${formData.productName || 'product'}_${new Date().toISOString().split('T')[0]}.html`;
+      a.download = `${language === 'gr' ? 'κοστολογηση' : 'costing'}_${formData.productName || 'product'}_${new Date().toISOString().split('T')[0]}.html`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
 
       toast.success(
-        language === 'el' 
+        language === 'gr' 
           ? 'Η αναφορά εξήχθη επιτυχώς!' 
           : 'Report exported successfully!'
       );
     } catch (error) {
       toast.error(
-        language === 'el' 
+        language === 'gr' 
           ? 'Σφάλμα κατά την εξαγωγή του PDF' 
           : 'Error exporting PDF'
       );
@@ -346,13 +346,13 @@ const PDFExport: React.FC<PDFExportProps> = ({ results, formData }) => {
       <CardHeader className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
         <CardTitle className="flex items-center space-x-2">
           <FileText className="w-5 h-5" />
-          <span>{language === 'el' ? 'Εξαγωγή Αναφοράς' : 'Export Report'}</span>
+          <span>{language === 'gr' ? 'Εξαγωγή Αναφοράς' : 'Export Report'}</span>
         </CardTitle>
       </CardHeader>
       <CardContent className="p-6 space-y-4">
         <div className="space-y-3">
           <h4 className="font-semibold text-sm">
-            {language === 'el' ? 'Επιλέξτε γραφήματα για εξαγωγή:' : 'Select charts to export:'}
+            {language === 'gr' ? 'Επιλέξτε γραφήματα για εξαγωγή:' : 'Select charts to export:'}
           </h4>
           
           <div className="space-y-2">
@@ -366,7 +366,7 @@ const PDFExport: React.FC<PDFExportProps> = ({ results, formData }) => {
               />
               <label htmlFor="costBreakdown" className="text-sm flex items-center space-x-2">
                 <BarChart3 className="w-4 h-4" />
-                <span>{language === 'el' ? 'Ανάλυση Κόστους' : 'Cost Breakdown'}</span>
+                <span>{language === 'gr' ? 'Ανάλυση Κόστους' : 'Cost Breakdown'}</span>
               </label>
             </div>
 
@@ -380,7 +380,7 @@ const PDFExport: React.FC<PDFExportProps> = ({ results, formData }) => {
               />
               <label htmlFor="profitAnalysis" className="text-sm flex items-center space-x-2">
                 <TrendingUp className="w-4 h-4" />
-                <span>{language === 'el' ? 'Ανάλυση Κερδοφορίας' : 'Profitability Analysis'}</span>
+                <span>{language === 'gr' ? 'Ανάλυση Κερδοφορίας' : 'Profitability Analysis'}</span>
               </label>
             </div>
 
@@ -394,7 +394,7 @@ const PDFExport: React.FC<PDFExportProps> = ({ results, formData }) => {
               />
               <label htmlFor="competitorComparison" className="text-sm flex items-center space-x-2">
                 <PieChart className="w-4 h-4" />
-                <span>{language === 'el' ? 'Σύγκριση Ανταγωνισμού' : 'Competitor Comparison'}</span>
+                <span>{language === 'gr' ? 'Σύγκριση Ανταγωνισμού' : 'Competitor Comparison'}</span>
               </label>
             </div>
           </div>
@@ -402,7 +402,7 @@ const PDFExport: React.FC<PDFExportProps> = ({ results, formData }) => {
 
         <Button onClick={exportToPDF} className="w-full" size="lg">
           <Download className="w-4 h-4 mr-2" />
-          {language === 'el' ? 'Εξαγωγή Αναφοράς' : 'Export Report'}
+          {language === 'gr' ? 'Εξαγωγή Αναφοράς' : 'Export Report'}
         </Button>
       </CardContent>
     </Card>

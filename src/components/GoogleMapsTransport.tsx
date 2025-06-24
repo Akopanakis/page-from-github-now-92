@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
-import { MapPin, Route, Navigation, Clock, Euro, User } from 'lucide-react';
+import { MapPin, route, Navigation, Clock, Euro, User } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { toast } from 'sonner';
 import TooltipHelper from './TooltipHelper';
@@ -60,7 +60,7 @@ const GoogleMapsTransport: React.FC<GoogleMapsTransportProps> = ({ formData, upd
   const calculateRoute = async () => {
     if (!formData.originAddress || !formData.destinationAddress) {
       toast.error(
-        language === 'el' 
+        language === 'gr' 
           ? 'Παρακαλώ εισάγετε και τις δύο διευθύνσεις' 
           : 'Please enter both addresses'
       );
@@ -138,13 +138,13 @@ const GoogleMapsTransport: React.FC<GoogleMapsTransportProps> = ({ formData, upd
       });
       
       toast.success(
-        language === 'el' 
+        language === 'gr' 
           ? 'Η διαδρομή υπολογίστηκε επιτυχώς!' 
           : 'Route calculated successfully!'
       );
     } catch (error) {
       toast.error(
-        language === 'el' 
+        language === 'gr' 
           ? 'Σφάλμα στον υπολογισμό της διαδρομής' 
           : 'Error calculating route'
       );
@@ -158,7 +158,7 @@ const GoogleMapsTransport: React.FC<GoogleMapsTransportProps> = ({ formData, upd
       <CardHeader>
         <CardTitle className="flex items-center space-x-2">
           <MapPin className="w-5 h-5" />
-          <span>{language === 'el' ? 'Στοιχεία Μεταφοράς' : 'Transport Details'}</span>
+          <span>{language === 'gr' ? 'Στοιχεία Μεταφοράς' : 'Transport Details'}</span>
           <TooltipHelper tooltipKey="tooltip.google.maps" />
         </CardTitle>
       </CardHeader>
@@ -171,7 +171,7 @@ const GoogleMapsTransport: React.FC<GoogleMapsTransportProps> = ({ formData, upd
             </Label>
             <Input
               type="text"
-              placeholder={language === 'el' ? 'π.χ. Καβάλα, Ελλάδα' : 'e.g. Kavala, Greece'}
+              placeholder={language === 'gr' ? 'π.χ. Καβάλα, Ελλάδα' : 'e.g. Kavala, Greece'}
               value={formData.originAddress || ''}
               onChange={(e) => handleAddressChange('origin', e.target.value)}
               className="mt-2"
@@ -201,7 +201,7 @@ const GoogleMapsTransport: React.FC<GoogleMapsTransportProps> = ({ formData, upd
             </Label>
             <Input
               type="text"
-              placeholder={language === 'el' ? 'π.χ. Θεσσαλονίκη, Ελλάδα' : 'e.g. Thessaloniki, Greece'}
+              placeholder={language === 'gr' ? 'π.χ. Θεσσαλονίκη, Ελλάδα' : 'e.g. Thessaloniki, Greece'}
               value={formData.destinationAddress || ''}
               onChange={(e) => handleAddressChange('destination', e.target.value)}
               className="mt-2"
@@ -231,10 +231,10 @@ const GoogleMapsTransport: React.FC<GoogleMapsTransportProps> = ({ formData, upd
             disabled={isCalculating || !formData.originAddress || !formData.destinationAddress}
             className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700"
           >
-            <Route className="w-4 h-4" />
+            <route className="w-4 h-4" />
             <span>
               {isCalculating 
-                ? (language === 'el' ? 'Υπολογισμός...' : 'Calculating...') 
+                ? (language === 'gr' ? 'Υπολογισμός...' : 'Calculating...') 
                 : t('calculate.route')
               }
             </span>
@@ -244,28 +244,28 @@ const GoogleMapsTransport: React.FC<GoogleMapsTransportProps> = ({ formData, upd
         {formData.routeCalculated && (
           <div className="bg-green-50 border border-green-200 rounded-lg p-4">
             <h4 className="font-semibold text-green-800 mb-3 flex items-center space-x-2">
-              <Route className="w-4 h-4" />
-              <span>{language === 'el' ? 'Αποτελέσματα Διαδρομής' : 'Route Results'}</span>
+              <route className="w-4 h-4" />
+              <span>{language === 'gr' ? 'Αποτελέσματα Διαδρομής' : 'Route Results'}</span>
             </h4>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
               <div className="flex items-center space-x-2">
                 <MapPin className="w-4 h-4 text-green-600" />
                 <div>
-                  <span className="text-green-600">{language === 'el' ? 'Απόσταση:' : 'Distance:'}</span>
+                  <span className="text-green-600">{language === 'gr' ? 'Απόσταση:' : 'Distance:'}</span>
                   <span className="font-semibold ml-2">{formData.distance} km</span>
                 </div>
               </div>
               <div className="flex items-center space-x-2">
                 <Euro className="w-4 h-4 text-green-600" />
                 <div>
-                  <span className="text-green-600">{language === 'el' ? 'Διόδια:' : 'Tolls:'}</span>
+                  <span className="text-green-600">{language === 'gr' ? 'Διόδια:' : 'Tolls:'}</span>
                   <span className="font-semibold ml-2">{formData.tolls}€</span>
                 </div>
               </div>
               <div className="flex items-center space-x-2">
                 <Clock className="w-4 h-4 text-green-600" />
                 <div>
-                  <span className="text-green-600">{language === 'el' ? 'Διάρκεια:' : 'Duration:'}</span>
+                  <span className="text-green-600">{language === 'gr' ? 'Διάρκεια:' : 'Duration:'}</span>
                   <span className="font-semibold ml-2">{formData.estimatedDuration}</span>
                 </div>
               </div>
@@ -307,7 +307,7 @@ const GoogleMapsTransport: React.FC<GoogleMapsTransportProps> = ({ formData, upd
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
             <Label className="flex items-center space-x-2">
-              <span>{language === 'el' ? 'Διόδια (€)' : 'Tolls (€)'}</span>
+              <span>{language === 'gr' ? 'Διόδια (€)' : 'Tolls (€)'}</span>
             </Label>
             <Input
               type="number"
@@ -336,7 +336,7 @@ const GoogleMapsTransport: React.FC<GoogleMapsTransportProps> = ({ formData, upd
           <div>
             <Label className="flex items-center space-x-2">
               <User className="w-4 h-4" />
-              <span>{language === 'el' ? 'Μισθός Οδηγού (€)' : 'Driver Salary (€)'}</span>
+              <span>{language === 'gr' ? 'Μισθός Οδηγού (€)' : 'Driver Salary (€)'}</span>
               <TooltipHelper tooltipKey="tooltip.driver.salary" />
             </Label>
             <Input
