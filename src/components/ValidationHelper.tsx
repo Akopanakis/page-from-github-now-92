@@ -32,11 +32,11 @@ const ValidationHelper: React.FC<ValidatedInputProps> = ({
     
     switch (type) {
       case 'weight':
-        return language === 'el' ? 'Εισάγετε βάρος σε kg' : 'Enter weight in kg';
+        return language === 'gr' ? 'Εισάγετε βάρος σε kg' : 'Enter weight in kg';
       case 'percentage':
-        return language === 'el' ? 'Ποσοστό %' : 'Percentage %';
+        return language === 'gr' ? 'Ποσοστό %' : 'Percentage %';
       default:
-        return language === 'el' ? 'Εισάγετε αριθμό' : 'Enter number';
+        return language === 'gr' ? 'Εισάγετε αριθμό' : 'Enter number';
     }
   };
 
@@ -46,22 +46,50 @@ const ValidationHelper: React.FC<ValidatedInputProps> = ({
     return undefined;
   };
 
+  // Enhanced input validation with security measures
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = parseFloat(e.target.value) || 0;
+    const inputStr = e.target.value;
+    
+    // Security: Prevent script injection in input
+    if (/<script|javascript:|vbscript:/i.test(inputStr)) {
+      console.warn('Potentially malicious input detected and blocked');
+      return;
+    }
+    
+    // Parse and validate numeric input
+    const inputValue = parseFloat(inputStr);
+    
+    // Handle NaN and invalid inputs
+    if (isNaN(inputValue) && inputStr !== '') {
+      return;
+    }
+    
+    const numericValue = isNaN(inputValue) ? 0 : inputValue;
     const maxVal = getMaxValue();
     
-    // Validation logic
-    if (inputValue < min) {
-      onChange(min);
-      return;
+    // Enhanced validation logic with bounds checking
+    let validatedValue = numericValue;
+    
+    if (validatedValue < min) {
+      validatedValue = min;
     }
     
-    if (maxVal && inputValue > maxVal) {
-      onChange(maxVal);
-      return;
+    if (maxVal && validatedValue > maxVal) {
+      validatedValue = maxVal;
     }
     
-    onChange(inputValue);
+    // Additional security: Prevent extremely large numbers
+    const MAX_SAFE_VALUE = 999999999;
+    if (validatedValue > MAX_SAFE_VALUE) {
+      validatedValue = MAX_SAFE_VALUE;
+    }
+    
+    // Security logging for unusual values
+    if (Math.abs(validatedValue - numericValue) > 0.01) {
+      console.log(`Input value adjusted for security/validation: ${numericValue} -> ${validatedValue}`);
+    }
+    
+    onChange(validatedValue);
   };
 
   return (
@@ -80,6 +108,11 @@ const ValidationHelper: React.FC<ValidatedInputProps> = ({
         required={required}
         className="w-full"
         step={type === 'percentage' ? '0.1' : '0.01'}
+        // Security: Prevent autocomplete for sensitive data
+        autoComplete="off"
+        // Security: Additional input attributes
+        pattern="[0-9]*\.?[0-9]*"
+        inputMode="decimal"
       />
     </div>
   );

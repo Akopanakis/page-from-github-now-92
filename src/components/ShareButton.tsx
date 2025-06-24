@@ -24,23 +24,33 @@ export default function ShareButton({ formData, results }: ShareButtonProps) {
         : 'Check out this seafood product costing from KostoPro'
     };
 
-    // Create a comprehensive share text
+    // Create a comprehensive share text with input sanitization for security
     let shareText = `${shareData.title}\n\n${shareData.text}\n\n`;
     
     if (formData) {
       shareText += language === 'gr' ? 'Στοιχεία:\n' : 'Details:\n';
-      shareText += `• ${language === 'gr' ? 'Αρχικό Βάρος' : 'Initial Weight'}: ${formData.initialWeight || 0}kg\n`;
-      shareText += `• ${language === 'gr' ? 'Κόστος ανά kg' : 'Cost per kg'}: €${formData.costPerKg || 0}\n`;
-      if (formData.profitMargin) {
-        shareText += `• ${language === 'gr' ? 'Περιθώριο Κέρδους' : 'Profit Margin'}: ${formData.profitMargin}%\n`;
+      // Enhanced input validation and sanitization
+      const initialWeight = typeof formData.initialWeight === 'number' ? Math.max(0, formData.initialWeight) : 0;
+      const costPerKg = typeof formData.costPerKg === 'number' ? Math.max(0, formData.costPerKg) : 0;
+      const profitMargin = typeof formData.profitMargin === 'number' ? Math.max(0, Math.min(100, formData.profitMargin)) : 0;
+      
+      shareText += `• ${language === 'gr' ? 'Αρχικό Βάρος' : 'Initial Weight'}: ${initialWeight}kg\n`;
+      shareText += `• ${language === 'gr' ? 'Κόστος ανά kg' : 'Cost per kg'}: €${costPerKg}\n`;
+      if (profitMargin > 0) {
+        shareText += `• ${language === 'gr' ? 'Περιθώριο Κέρδους' : 'Profit Margin'}: ${profitMargin}%\n`;
       }
     }
 
     if (results) {
       shareText += `\n${language === 'gr' ? 'Αποτελέσματα' : 'Results'}:\n`;
-      shareText += `• ${language === 'gr' ? 'Τελικό Βάρος' : 'Final Weight'}: ${results.finalWeight?.toFixed(2) || 0}kg\n`;
-      shareText += `• ${language === 'gr' ? 'Συνολικό Κόστος' : 'Total Cost'}: €${results.totalCost?.toFixed(2) || 0}\n`;
-      shareText += `• ${language === 'gr' ? 'Τιμή Πώλησης' : 'Selling Price'}: €${results.sellingPrice?.toFixed(2) || 0}\n`;
+      // Enhanced result validation
+      const finalWeight = typeof results.finalWeight === 'number' ? Math.max(0, results.finalWeight) : 0;
+      const totalCost = typeof results.totalCost === 'number' ? Math.max(0, results.totalCost) : 0;
+      const sellingPrice = typeof results.sellingPrice === 'number' ? Math.max(0, results.sellingPrice) : 0;
+      
+      shareText += `• ${language === 'gr' ? 'Τελικό Βάρος' : 'Final Weight'}: ${finalWeight.toFixed(2)}kg\n`;
+      shareText += `• ${language === 'gr' ? 'Συνολικό Κόστος' : 'Total Cost'}: €${totalCost.toFixed(2)}\n`;
+      shareText += `• ${language === 'gr' ? 'Τιμή Πώλησης' : 'Selling Price'}: €${sellingPrice.toFixed(2)}\n`;
     }
 
     shareText += `\n${shareData.url}`;
@@ -54,7 +64,7 @@ export default function ShareButton({ formData, results }: ShareButtonProps) {
           url: shareData.url
         });
       } else {
-        // Fallback to clipboard
+        // Fallback to clipboard with error handling
         await navigator.clipboard.writeText(shareText);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
@@ -67,22 +77,36 @@ export default function ShareButton({ formData, results }: ShareButtonProps) {
       }
     } catch (error) {
       console.error('Error sharing:', error);
-      // Final fallback - manual copy
-      const textArea = document.createElement('textarea');
-      textArea.value = shareText;
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textArea);
+      // Enhanced error logging for security monitoring
+      console.warn('Share operation failed, falling back to manual copy');
       
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-      
-      toast.success(
-        language === 'gr' 
-          ? 'Το κείμενο αντιγράφηκε στο clipboard!' 
-          : 'Text copied to clipboard!'
-      );
+      // Final fallback - manual copy with enhanced security
+      try {
+        const textArea = document.createElement('textarea');
+        textArea.value = shareText;
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+        
+        toast.success(
+          language === 'gr' 
+            ? 'Το κείμενο αντιγράφηκε στο clipboard!' 
+            : 'Text copied to clipboard!'
+        );
+      } catch (fallbackError) {
+        console.error('Manual copy also failed:', fallbackError);
+        toast.error(
+          language === 'gr' 
+            ? 'Σφάλμα κατά την κοινοποίηση' 
+            : 'Error sharing content'
+        );
+      }
     }
   };
 
