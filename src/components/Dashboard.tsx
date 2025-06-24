@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { Button } from './ui/button';
@@ -7,6 +8,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import ProductBasics from './ProductBasics';
 import ResultsSection from './ResultsSection';
 import AnalysisTab from './AnalysisTab';
+import ShareButton from './ShareButton';
 import { useCalculation } from '../hooks/useCalculation';
 
 export default function Dashboard() {
@@ -30,6 +32,7 @@ export default function Dashboard() {
           {language === 'gr' ? 'Κοστολόγηση Πρώτων Υλών' : 'Raw Material Costing'}
         </h1>
         <div className="flex gap-2">
+          <ShareButton formData={formData} results={results} />
           <Button variant="outline" size="icon" onClick={toggleLanguage}>
             <Languages className="h-4 w-4" />
           </Button>
