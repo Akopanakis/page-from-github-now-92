@@ -194,7 +194,7 @@ const StatisticalModels: React.FC<StatisticalModelsProps> = ({ formData, results
           </div>
         );
 
-      case 'risk':
+      case 'risk': {
         const riskColors = {
           low: 'green',
           medium: 'yellow',
@@ -230,6 +230,7 @@ const StatisticalModels: React.FC<StatisticalModelsProps> = ({ formData, results
             </div>
           </div>
         );
+      }
 
       default:
         return null;

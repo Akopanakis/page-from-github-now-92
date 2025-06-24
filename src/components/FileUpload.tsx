@@ -79,7 +79,8 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFileUpload }) => {
     }
 
     // Check file name for potential security issues
-    const suspiciousChars = /[<>:"/\\|?*\x00-\x1f]/;
+    // eslint-disable-next-line no-control-regex
+    const suspiciousChars = /[<>:"/\\|?*\x00-\x1F]/;
     if (suspiciousChars.test(file.name)) {
       toast.error(
         language === 'gr' 
