@@ -10,13 +10,16 @@ export interface FormData {
   profitMargin: number;
 }
 
-export interface Results {
+export interface CalculationResults {
   finalWeight: number;
   totalCost: number;
   costPerKg: number;
   sellingPrice: number;
   profit: number;
 }
+
+// Keep the Results type for backward compatibility
+export type Results = CalculationResults;
 
 export function useCalculation() {
   const [formData, setFormData] = useState<FormData>({
@@ -28,7 +31,7 @@ export function useCalculation() {
     profitMargin: 0,
   });
 
-  const [results, setResults] = useState<Results | null>(null);
+  const [results, setResults] = useState<CalculationResults | null>(null);
 
   const updateFormData = (field: keyof FormData, value: number) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -57,7 +60,7 @@ export function useCalculation() {
       // Step 7: Calculate total profit
       const profit = (sellingPrice - costPerKg) * finalWeight;
 
-      const calculationResults: Results = {
+      const calculationResults: CalculationResults = {
         finalWeight,
         totalCost,
         costPerKg,

@@ -159,33 +159,33 @@ const BatchManagement = () => {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">
-            {language === 'el' ? 'Διαχείριση Παρτίδων' : 'Batch Management'}
+            {language === 'gr' ? 'Διαχείριση Παρτίδων' : 'Batch Management'}
           </h2>
           <p className="text-gray-600">
-            {language === 'el' ? 'Προσθέστε και διαχειριστείτε τις παρτίδες σας' : 'Add and manage your batches'}
+            {language === 'gr' ? 'Προσθέστε και διαχειριστείτε τις παρτίδες σας' : 'Add and manage your batches'}
           </p>
         </div>
         <div className="flex space-x-2">
           <Button onClick={handleExportCSV} variant="outline" className="flex items-center space-x-2">
             <Download className="w-4 h-4" />
-            <span>{language === 'el' ? 'Εξαγωγή CSV' : 'Export CSV'}</span>
+            <span>{language === 'gr' ? 'Εξαγωγή CSV' : 'Export CSV'}</span>
           </Button>
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
               <Button className="flex items-center space-x-2">
                 <Plus className="w-4 h-4" />
-                <span>{language === 'el' ? 'Νέα Παρτίδα' : 'New Batch'}</span>
+                <span>{language === 'gr' ? 'Νέα Παρτίδα' : 'New Batch'}</span>
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[600px]">
               <DialogHeader>
                 <DialogTitle>
-                  {language === 'el' ? 'Προσθήκη Νέας Παρτίδας' : 'Add New Batch'}
+                  {language === 'gr' ? 'Προσθήκη Νέας Παρτίδας' : 'Add New Batch'}
                 </DialogTitle>
               </DialogHeader>
               <div className="grid grid-cols-2 gap-4 py-4">
                 <div>
-                  <Label htmlFor="date">{language === 'el' ? 'Ημερομηνία' : 'Date'}</Label>
+                  <Label htmlFor="date">{language === 'gr' ? 'Ημερομηνία' : 'Date'}</Label>
                   <Input
                     id="date"
                     type="date"
@@ -194,25 +194,25 @@ const BatchManagement = () => {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="product">{language === 'el' ? 'Προϊόν' : 'Product'}</Label>
+                  <Label htmlFor="product">{language === 'gr' ? 'Προϊόν' : 'Product'}</Label>
                   <Input
                     id="product"
                     value={newBatch.product}
                     onChange={(e) => setNewBatch(prev => ({ ...prev, product: e.target.value }))}
-                    placeholder={language === 'el' ? 'π.χ. Θράψαλο Block' : 'e.g. Cod Block'}
+                    placeholder={language === 'gr' ? 'π.χ. Θράψαλο Block' : 'e.g. Cod Block'}
                   />
                 </div>
                 <div>
-                  <Label htmlFor="supplier">{language === 'el' ? 'Προμηθευτής' : 'Supplier'}</Label>
+                  <Label htmlFor="supplier">{language === 'gr' ? 'Προμηθευτής' : 'Supplier'}</Label>
                   <Input
                     id="supplier"
                     value={newBatch.supplier}
                     onChange={(e) => setNewBatch(prev => ({ ...prev, supplier: e.target.value }))}
-                    placeholder={language === 'el' ? 'π.χ. Αιγαίο Α.Ε.' : 'e.g. Ocean Ltd'}
+                    placeholder={language === 'gr' ? 'π.χ. Αιγαίο Α.Ε.' : 'e.g. Ocean Ltd'}
                   />
                 </div>
                 <div>
-                  <Label htmlFor="initialWeight">{language === 'el' ? 'Αρχικό Βάρος (kg)' : 'Initial Weight (kg)'}</Label>
+                  <Label htmlFor="initialWeight">{language === 'gr' ? 'Αρχικό Βάρος (kg)' : 'Initial Weight (kg)'}</Label>
                   <Input
                     id="initialWeight"
                     type="number"
@@ -221,7 +221,7 @@ const BatchManagement = () => {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="cleanLoss">{language === 'el' ? 'Απώλεια Καθαρισμού (%)' : 'Clean Loss (%)'}</Label>
+                  <Label htmlFor="cleanLoss">{language === 'gr' ? 'Απώλεια Καθαρισμού (%)' : 'Clean Loss (%)'}</Label>
                   <Input
                     id="cleanLoss"
                     type="number"
@@ -230,7 +230,7 @@ const BatchManagement = () => {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="glazing">{language === 'el' ? 'Γλασσάρισμα (%)' : 'Glazing (%)'}</Label>
+                  <Label htmlFor="glazing">{language === 'gr' ? 'Γλασσάρισμα (%)' : 'Glazing (%)'}</Label>
                   <Input
                     id="glazing"
                     type="number"
@@ -239,7 +239,7 @@ const BatchManagement = () => {
                   />
                 </div>
                 <div className="col-span-2">
-                  <Label htmlFor="buyPrice">{language === 'el' ? 'Τιμή Αγοράς/kg (€)' : 'Buy Price/kg (€)'}</Label>
+                  <Label htmlFor="buyPrice">{language === 'gr' ? 'Τιμή Αγοράς/kg (€)' : 'Buy Price/kg (€)'}</Label>
                   <Input
                     id="buyPrice"
                     type="number"
@@ -251,10 +251,10 @@ const BatchManagement = () => {
               </div>
               <div className="flex justify-end space-x-2">
                 <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
-                  {language === 'el' ? 'Ακύρωση' : 'Cancel'}
+                  {language === 'gr' ? 'Ακύρωση' : 'Cancel'}
                 </Button>
                 <Button onClick={handleAddBatch}>
-                  {language === 'el' ? 'Προσθήκη' : 'Add'}
+                  {language === 'gr' ? 'Προσθήκη' : 'Add'}
                 </Button>
               </div>
             </DialogContent>
@@ -270,7 +270,7 @@ const BatchManagement = () => {
               <div className="relative">
                 <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
-                  placeholder={language === 'el' ? 'Αναζήτηση προϊόντων ή προμηθευτών...' : 'Search products or suppliers...'}
+                  placeholder={language === 'gr' ? 'Αναζήτηση προϊόντων ή προμηθευτών...' : 'Search products or suppliers...'}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-8"
@@ -281,10 +281,10 @@ const BatchManagement = () => {
               <Select value={filterSupplier} onValueChange={setFilterSupplier}>
                 <SelectTrigger>
                   <Filter className="w-4 h-4 mr-2" />
-                  <SelectValue placeholder={language === 'el' ? 'Προμηθευτής' : 'Supplier'} />
+                  <SelectValue placeholder={language === 'gr' ? 'Προμηθευτής' : 'Supplier'} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">{language === 'el' ? 'Όλοι οι προμηθευτές' : 'All suppliers'}</SelectItem>
+                  <SelectItem value="all">{language === 'gr' ? 'Όλοι οι προμηθευτές' : 'All suppliers'}</SelectItem>
                   {suppliers.map(supplier => (
                     <SelectItem key={supplier} value={supplier}>{supplier}</SelectItem>
                   ))}
@@ -298,21 +298,21 @@ const BatchManagement = () => {
       {/* Batches Table */}
       <Card>
         <CardHeader>
-          <CardTitle>{language === 'el' ? 'Παρτίδες' : 'Batches'} ({filteredBatches.length})</CardTitle>
+          <CardTitle>{language === 'gr' ? 'Παρτίδες' : 'Batches'} ({filteredBatches.length})</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b">
-                  <th className="text-left p-3">{language === 'el' ? 'Ημερομηνία' : 'Date'}</th>
-                  <th className="text-left p-3">{language === 'el' ? 'Προϊόν' : 'Product'}</th>
-                  <th className="text-left p-3">{language === 'el' ? 'Προμηθευτής' : 'Supplier'}</th>
-                  <th className="text-right p-3">{language === 'el' ? 'Αρχικό Βάρος' : 'Initial Weight'}</th>
-                  <th className="text-right p-3">{language === 'el' ? 'Κόστος/Kg' : 'Cost/Kg'}</th>
-                  <th className="text-right p-3">{language === 'el' ? 'Πώληση/Kg' : 'Selling/Kg'}</th>
-                  <th className="text-right p-3">{language === 'el' ? 'Κέρδος %' : 'Profit %'}</th>
-                  <th className="text-center p-3">{language === 'el' ? 'Ενέργειες' : 'Actions'}</th>
+                  <th className="text-left p-3">{language === 'gr' ? 'Ημερομηνία' : 'Date'}</th>
+                  <th className="text-left p-3">{language === 'gr' ? 'Προϊόν' : 'Product'}</th>
+                  <th className="text-left p-3">{language === 'gr' ? 'Προμηθευτής' : 'Supplier'}</th>
+                  <th className="text-right p-3">{language === 'gr' ? 'Αρχικό Βάρος' : 'Initial Weight'}</th>
+                  <th className="text-right p-3">{language === 'gr' ? 'Κόστος/Kg' : 'Cost/Kg'}</th>
+                  <th className="text-right p-3">{language === 'gr' ? 'Πώληση/Kg' : 'Selling/Kg'}</th>
+                  <th className="text-right p-3">{language === 'gr' ? 'Κέρδος %' : 'Profit %'}</th>
+                  <th className="text-center p-3">{language === 'gr' ? 'Ενέργειες' : 'Actions'}</th>
                 </tr>
               </thead>
               <tbody>

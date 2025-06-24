@@ -72,9 +72,9 @@ const AdvancedFinancialModels: React.FC<AdvancedFinancialModelsProps> = ({ formD
     
     const totalInvestment = 10000;
     return [
-      { name: language === 'el' ? 'Μετοχές' : 'Stocks', value: totalInvestment * 0.6, color: '#3b82f6' },
-      { name: language === 'el' ? 'Ομόλογα' : 'Bonds', value: totalInvestment * 0.3, color: '#10b981' },
-      { name: language === 'el' ? 'Μετρητά' : 'Cash', value: totalInvestment * 0.1, color: '#f59e0b' }
+      { name: language === 'gr' ? 'Μετοχές' : 'Stocks', value: totalInvestment * 0.6, color: '#3b82f6' },
+      { name: language === 'gr' ? 'Ομόλογα' : 'Bonds', value: totalInvestment * 0.3, color: '#10b981' },
+      { name: language === 'gr' ? 'Μετρητά' : 'Cash', value: totalInvestment * 0.1, color: '#f59e0b' }
     ];
   }, [results, language]);
 
@@ -101,20 +101,20 @@ const AdvancedFinancialModels: React.FC<AdvancedFinancialModelsProps> = ({ formD
       <div className="flex items-center justify-center mb-6">
         <Badge variant="secondary" className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2">
           <Zap className="w-4 h-4 mr-2" />
-          {language === 'el' ? 'Προηγμένα Οικονομικά Μοντέλα' : 'Advanced Financial Models'}
+          {language === 'gr' ? 'Προηγμένα Οικονομικά Μοντέλα' : 'Advanced Financial Models'}
         </Badge>
       </div>
 
       <Tabs defaultValue="growth" className="w-full">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="growth">
-            {language === 'el' ? 'Ανάπτυξη' : 'Growth'}
+            {language === 'gr' ? 'Ανάπτυξη' : 'Growth'}
           </TabsTrigger>
           <TabsTrigger value="present">
-            {language === 'el' ? 'Παρ. Αξία' : 'Present Val.'}
+            {language === 'gr' ? 'Παρ. Αξία' : 'Present Val.'}
           </TabsTrigger>
           <TabsTrigger value="portfolio">
-            {language === 'el' ? 'Χαρτοφυλάκιο' : 'Portfolio'}
+            {language === 'gr' ? 'Χαρτοφυλάκιο' : 'Portfolio'}
           </TabsTrigger>
         </TabsList>
 
@@ -123,13 +123,13 @@ const AdvancedFinancialModels: React.FC<AdvancedFinancialModelsProps> = ({ formD
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <TrendingUp className="w-5 h-5 text-green-600" />
-                <span>{language === 'el' ? 'Ανάλυση Ρυθμού Ανάπτυξης' : 'Growth Rate Analysis'}</span>
+                <span>{language === 'gr' ? 'Ανάλυση Ρυθμού Ανάπτυξης' : 'Growth Rate Analysis'}</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <Label>{language === 'el' ? 'Αρχική Αξία (€)' : 'Initial Value (€)'}</Label>
+                  <Label>{language === 'gr' ? 'Αρχική Αξία (€)' : 'Initial Value (€)'}</Label>
                   <Input
                     type="number"
                     value={growthData.initialValue}
@@ -138,7 +138,7 @@ const AdvancedFinancialModels: React.FC<AdvancedFinancialModelsProps> = ({ formD
                   />
                 </div>
                 <div>
-                  <Label>{language === 'el' ? 'Τελική Αξία (€)' : 'Final Value (€)'}</Label>
+                  <Label>{language === 'gr' ? 'Τελική Αξία (€)' : 'Final Value (€)'}</Label>
                   <Input
                     type="number"
                     value={growthData.finalValue}
@@ -147,7 +147,7 @@ const AdvancedFinancialModels: React.FC<AdvancedFinancialModelsProps> = ({ formD
                   />
                 </div>
                 <div>
-                  <Label>{language === 'el' ? 'Περίοδοι' : 'Periods'}</Label>
+                  <Label>{language === 'gr' ? 'Περίοδοι' : 'Periods'}</Label>
                   <Input
                     type="number"
                     value={growthData.periods}
@@ -159,7 +159,7 @@ const AdvancedFinancialModels: React.FC<AdvancedFinancialModelsProps> = ({ formD
               
               <div className="bg-green-50 p-4 rounded-lg border border-green-200">
                 <h4 className="font-semibold text-green-800 mb-2">
-                  {language === 'el' ? 'Αποτέλεσμα:' : 'Result:'}
+                  {language === 'gr' ? 'Αποτέλεσμα:' : 'Result:'}
                 </h4>
                 <p className="text-2xl font-bold text-green-600">
                   {calculateGrowthRate().toFixed(2)}%
@@ -178,7 +178,7 @@ const AdvancedFinancialModels: React.FC<AdvancedFinancialModelsProps> = ({ formD
                     dataKey="value" 
                     stroke="#10b981" 
                     strokeWidth={3}
-                    name={language === 'el' ? 'Προβλεπόμενη Αξία' : 'Projected Value'}
+                    name={language === 'gr' ? 'Προβλεπόμενη Αξία' : 'Projected Value'}
                   />
                   <Line 
                     type="monotone" 
@@ -186,7 +186,7 @@ const AdvancedFinancialModels: React.FC<AdvancedFinancialModelsProps> = ({ formD
                     stroke="#ef4444" 
                     strokeWidth={2}
                     strokeDasharray="5 5"
-                    name={language === 'el' ? 'Στόχος' : 'Target'}
+                    name={language === 'gr' ? 'Στόχος' : 'Target'}
                   />
                 </LineChart>
               </ResponsiveContainer>
@@ -199,13 +199,13 @@ const AdvancedFinancialModels: React.FC<AdvancedFinancialModelsProps> = ({ formD
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <DollarSign className="w-5 h-5 text-blue-600" />
-                <span>{language === 'el' ? 'Ανάλυση Παρούσας Αξίας' : 'Present Value Analysis'}</span>
+                <span>{language === 'gr' ? 'Ανάλυση Παρούσας Αξίας' : 'Present Value Analysis'}</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <Label>{language === 'el' ? 'Μελλοντική Αξία (€)' : 'Future Value (€)'}</Label>
+                  <Label>{language === 'gr' ? 'Μελλοντική Αξία (€)' : 'Future Value (€)'}</Label>
                   <Input
                     type="number"
                     value={presentValueData.futureValue}
@@ -214,7 +214,7 @@ const AdvancedFinancialModels: React.FC<AdvancedFinancialModelsProps> = ({ formD
                   />
                 </div>
                 <div>
-                  <Label>{language === 'el' ? 'Επιτόκιο (%)' : 'Discount Rate (%)'}</Label>
+                  <Label>{language === 'gr' ? 'Επιτόκιο (%)' : 'Discount Rate (%)'}</Label>
                   <Input
                     type="number"
                     value={presentValueData.discountRate}
@@ -223,7 +223,7 @@ const AdvancedFinancialModels: React.FC<AdvancedFinancialModelsProps> = ({ formD
                   />
                 </div>
                 <div>
-                  <Label>{language === 'el' ? 'Περίοδοι' : 'Periods'}</Label>
+                  <Label>{language === 'gr' ? 'Περίοδοι' : 'Periods'}</Label>
                   <Input
                     type="number"
                     value={presentValueData.periods}
@@ -235,7 +235,7 @@ const AdvancedFinancialModels: React.FC<AdvancedFinancialModelsProps> = ({ formD
               
               <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
                 <h4 className="font-semibold text-blue-800 mb-2">
-                  {language === 'el' ? 'Παρούσα Αξία:' : 'Present Value:'}
+                  {language === 'gr' ? 'Παρούσα Αξία:' : 'Present Value:'}
                 </h4>
                 <p className="text-2xl font-bold text-blue-600">
                   €{calculatePresentValue().toFixed(2)}
@@ -260,7 +260,7 @@ const AdvancedFinancialModels: React.FC<AdvancedFinancialModelsProps> = ({ formD
                     dataKey="presentValue" 
                     stroke="#3b82f6" 
                     fill="url(#pvGradient)"
-                    name={language === 'el' ? 'Παρούσα Αξία' : 'Present Value'}
+                    name={language === 'gr' ? 'Παρούσα Αξία' : 'Present Value'}
                   />
                 </AreaChart>
               </ResponsiveContainer>
@@ -273,7 +273,7 @@ const AdvancedFinancialModels: React.FC<AdvancedFinancialModelsProps> = ({ formD
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <PieChartIcon className="w-5 h-5 text-purple-600" />
-                <span>{language === 'el' ? 'Κατανομή Χαρτοφυλακίου' : 'Portfolio Allocation'}</span>
+                <span>{language === 'gr' ? 'Κατανομή Χαρτοφυλακίου' : 'Portfolio Allocation'}</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
