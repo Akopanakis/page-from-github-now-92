@@ -52,12 +52,20 @@ export default function Dashboard() {
 
         <TabsContent value="calculation" className="space-y-6">
           <div className="grid gap-6 lg:grid-cols-2">
-            <ProductBasics
-              formData={formData}
-              onUpdate={updateFormData}
-              onCalculate={calculate}
-              onReset={reset}
-            />
+            <div className="space-y-6">
+              <ProductBasics
+                formData={formData}
+                updateFormData={updateFormData}
+              />
+              <div className="flex gap-4">
+                <Button onClick={calculate} className="flex-1">
+                  {t('form.calculate')}
+                </Button>
+                <Button onClick={reset} variant="outline" className="flex-1">
+                  {t('form.reset')}
+                </Button>
+              </div>
+            </div>
             {results && <ResultsSection results={results} />}
           </div>
         </TabsContent>

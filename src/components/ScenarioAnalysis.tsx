@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -30,7 +31,7 @@ const ScenarioAnalysis: React.FC<ScenarioAnalysisProps> = ({ baseResults, formDa
   const [scenarios, setScenarios] = useState<Scenario[]>([
     {
       id: '1',
-      name: language === 'el' ? 'Βασικό Σενάριο' : 'Base Scenario',
+      name: language === 'gr' ? 'Βασικό Σενάριο' : 'Base Scenario',
       priceIncrease: 0,
       costIncrease: 0,
       demandChange: 0,
@@ -48,19 +49,19 @@ const ScenarioAnalysis: React.FC<ScenarioAnalysisProps> = ({ baseResults, formDa
 
   const scenarioTemplates = [
     { 
-      name: language === 'el' ? 'Οικονομική Κρίση' : 'Economic Crisis', 
+      name: language === 'gr' ? 'Οικονομική Κρίση' : 'Economic Crisis', 
       priceIncrease: -10, 
       costIncrease: 15, 
       demandChange: -25 
     },
     { 
-      name: language === 'el' ? 'Ανάπτυξη Αγοράς' : 'Market Growth', 
+      name: language === 'gr' ? 'Ανάπτυξη Αγοράς' : 'Market Growth', 
       priceIncrease: 8, 
       costIncrease: 3, 
       demandChange: 20 
     },
     { 
-      name: language === 'el' ? 'Αύξηση Πρώτων Υλών' : 'Raw Material Increase', 
+      name: language === 'gr' ? 'Αύξηση Πρώτων Υλών' : 'Raw Material Increase', 
       priceIncrease: 5, 
       costIncrease: 12, 
       demandChange: -5 
@@ -116,9 +117,9 @@ const ScenarioAnalysis: React.FC<ScenarioAnalysisProps> = ({ baseResults, formDa
   const chartData = useMemo(() => {
     return scenarios.map(scenario => ({
       name: scenario.name.length > 15 ? scenario.name.substring(0, 15) + '...' : scenario.name,
-      [language === 'el' ? 'Κέρδος/Κιλό' : 'Profit/Kg']: scenario.profit,
-      [language === 'el' ? 'Έσοδα' : 'Revenue']: scenario.revenue / 100,
-      [language === 'el' ? 'ROI' : 'ROI']: baseResults ? (scenario.profit / (baseResults.totalCostWithVat / baseResults.netWeight)) * 100 : 0
+      [language === 'gr' ? 'Κέρδος/Κιλό' : 'Profit/Kg']: scenario.profit,
+      [language === 'gr' ? 'Έσοδα' : 'Revenue']: scenario.revenue / 100,
+      [language === 'gr' ? 'ROI' : 'ROI']: baseResults ? (scenario.profit / (baseResults.totalCostWithVat / baseResults.netWeight)) * 100 : 0
     }));
   }, [scenarios, baseResults, language]);
 
@@ -163,12 +164,12 @@ const ScenarioAnalysis: React.FC<ScenarioAnalysisProps> = ({ baseResults, formDa
           <div className="flex items-center space-x-2">
             <Target className="w-5 h-5 text-blue-600" />
             <h3 className="font-semibold text-blue-800">
-              {language === 'el' ? 'Ανάλυση Σεναρίων' : 'Scenario Analysis'}
+              {language === 'gr' ? 'Ανάλυση Σεναρίων' : 'Scenario Analysis'}
             </h3>
             <TooltipHelper tooltipKey="tooltip.scenario.analysis" />
           </div>
           <p className="text-sm text-blue-700 mt-2">
-            {language === 'el' 
+            {language === 'gr' 
               ? 'Εξετάστε διαφορετικά σενάρια για να κατανοήσετε την επίδραση αλλαγών στην κερδοφορία'
               : 'Examine different scenarios to understand the impact of changes on profitability'
             }
@@ -181,7 +182,7 @@ const ScenarioAnalysis: React.FC<ScenarioAnalysisProps> = ({ baseResults, formDa
         <CardHeader className="bg-gradient-to-r from-indigo-50 to-purple-50 border-b border-slate-200">
           <CardTitle className="flex items-center space-x-2 text-slate-800">
             <AlertTriangle className="w-5 h-5 text-indigo-600" />
-            <span>{language === 'el' ? 'Έτοιμα Σενάρια' : 'Quick Scenarios'}</span>
+            <span>{language === 'gr' ? 'Έτοιμα Σενάρια' : 'Quick Scenarios'}</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="p-6">
@@ -195,9 +196,9 @@ const ScenarioAnalysis: React.FC<ScenarioAnalysisProps> = ({ baseResults, formDa
               >
                 <span className="font-semibold">{template.name}</span>
                 <div className="text-xs text-slate-600 space-y-1">
-                  <div>{language === 'el' ? 'Τιμή' : 'Price'}: {template.priceIncrease >= 0 ? '+' : ''}{template.priceIncrease}%</div>
-                  <div>{language === 'el' ? 'Κόστος' : 'Cost'}: {template.costIncrease >= 0 ? '+' : ''}{template.costIncrease}%</div>
-                  <div>{language === 'el' ? 'Ζήτηση' : 'Demand'}: {template.demandChange >= 0 ? '+' : ''}{template.demandChange}%</div>
+                  <div>{language === 'gr' ? 'Τιμή' : 'Price'}: {template.priceIncrease >= 0 ? '+' : ''}{template.priceIncrease}%</div>
+                  <div>{language === 'gr' ? 'Κόστος' : 'Cost'}: {template.costIncrease >= 0 ? '+' : ''}{template.costIncrease}%</div>
+                  <div>{language === 'gr' ? 'Ζήτηση' : 'Demand'}: {template.demandChange >= 0 ? '+' : ''}{template.demandChange}%</div>
                 </div>
               </Button>
             ))}
@@ -210,25 +211,25 @@ const ScenarioAnalysis: React.FC<ScenarioAnalysisProps> = ({ baseResults, formDa
         <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50 border-b border-slate-200">
           <CardTitle className="flex items-center space-x-2 text-slate-800">
             <Plus className="w-5 h-5 text-purple-600" />
-            <span>{language === 'el' ? 'Προσαρμοσμένο Σενάριο' : 'Custom Scenario'}</span>
+            <span>{language === 'gr' ? 'Προσαρμοσμένο Σενάριο' : 'Custom Scenario'}</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="p-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
               <Label className="text-slate-700 font-medium flex items-center space-x-1">
-                <span>{language === 'el' ? 'Όνομα Σεναρίου' : 'Scenario Name'}</span>
+                <span>{language === 'gr' ? 'Όνομα Σεναρίου' : 'Scenario Name'}</span>
               </Label>
               <Input
                 value={newScenario.name}
                 onChange={(e) => setNewScenario({...newScenario, name: e.target.value})}
-                placeholder={language === 'el' ? 'π.χ. Αύξηση κόστους 10%' : 'e.g. Cost increase 10%'}
+                placeholder={language === 'gr' ? 'π.χ. Αύξηση κόστους 10%' : 'e.g. Cost increase 10%'}
                 className="mt-1"
               />
             </div>
             <div>
               <Label className="text-slate-700 font-medium flex items-center space-x-1">
-                <span>{language === 'el' ? 'Αύξηση Τιμής (%)' : 'Price Increase (%)'}</span>
+                <span>{language === 'gr' ? 'Αύξηση Τιμής (%)' : 'Price Increase (%)'}</span>
                 <TooltipHelper tooltipKey="tooltip.price.increase" />
               </Label>
               <Input
@@ -240,7 +241,7 @@ const ScenarioAnalysis: React.FC<ScenarioAnalysisProps> = ({ baseResults, formDa
             </div>
             <div>
               <Label className="text-slate-700 font-medium flex items-center space-x-1">
-                <span>{language === 'el' ? 'Αύξηση Κόστους (%)' : 'Cost Increase (%)'}</span>
+                <span>{language === 'gr' ? 'Αύξηση Κόστους (%)' : 'Cost Increase (%)'}</span>
                 <TooltipHelper tooltipKey="tooltip.cost.increase" />
               </Label>
               <Input
@@ -252,7 +253,7 @@ const ScenarioAnalysis: React.FC<ScenarioAnalysisProps> = ({ baseResults, formDa
             </div>
             <div>
               <Label className="text-slate-700 font-medium flex items-center space-x-1">
-                <span>{language === 'el' ? 'Αλλαγή Ζήτησης (%)' : 'Demand Change (%)'}</span>
+                <span>{language === 'gr' ? 'Αλλαγή Ζήτησης (%)' : 'Demand Change (%)'}</span>
                 <TooltipHelper tooltipKey="tooltip.demand.change" />
               </Label>
               <Input
@@ -269,7 +270,7 @@ const ScenarioAnalysis: React.FC<ScenarioAnalysisProps> = ({ baseResults, formDa
             disabled={!newScenario.name}
           >
             <Plus className="w-4 h-4 mr-2" />
-            {language === 'el' ? 'Προσθήκη Σεναρίου' : 'Add Scenario'}
+            {language === 'gr' ? 'Προσθήκη Σεναρίου' : 'Add Scenario'}
           </Button>
         </CardContent>
       </Card>
@@ -282,7 +283,7 @@ const ScenarioAnalysis: React.FC<ScenarioAnalysisProps> = ({ baseResults, formDa
         <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-slate-200">
           <CardTitle className="flex items-center space-x-2 text-slate-800">
             <BarChart3 className="w-5 h-5 text-blue-600" />
-            <span>{language === 'el' ? 'Σύγκριση Σεναρίων' : 'Scenario Comparison'}</span>
+            <span>{language === 'gr' ? 'Σύγκριση Σεναρίων' : 'Scenario Comparison'}</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="p-6">
@@ -304,12 +305,12 @@ const ScenarioAnalysis: React.FC<ScenarioAnalysisProps> = ({ baseResults, formDa
               <Tooltip content={<CustomTooltip />} />
               <Legend />
               <Bar 
-                dataKey={language === 'el' ? 'Κέρδος/Κιλό' : 'Profit/Kg'} 
+                dataKey={language === 'gr' ? 'Κέρδος/Κιλό' : 'Profit/Kg'} 
                 fill="url(#profitGradient)" 
                 radius={[4, 4, 0, 0]} 
               />
               <Bar 
-                dataKey={language === 'el' ? 'Έσοδα' : 'Revenue'} 
+                dataKey={language === 'gr' ? 'Έσοδα' : 'Revenue'} 
                 fill="url(#revenueGradient)" 
                 radius={[4, 4, 0, 0]} 
               />
@@ -323,7 +324,7 @@ const ScenarioAnalysis: React.FC<ScenarioAnalysisProps> = ({ baseResults, formDa
         <CardHeader className="bg-gradient-to-r from-green-50 to-emerald-50 border-b border-slate-200">
           <CardTitle className="flex items-center space-x-2 text-slate-800">
             <TrendingUp className="w-5 h-5 text-green-600" />
-            <span>{language === 'el' ? 'Ανάλυση Ευαισθησίας' : 'Sensitivity Analysis'}</span>
+            <span>{language === 'gr' ? 'Ανάλυση Ευαισθησίας' : 'Sensitivity Analysis'}</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="p-6">
@@ -339,21 +340,21 @@ const ScenarioAnalysis: React.FC<ScenarioAnalysisProps> = ({ baseResults, formDa
                 dataKey="priceChange" 
                 stroke="#3b82f6" 
                 strokeWidth={3}
-                name={language === 'el' ? 'Αλλαγή Τιμής' : 'Price Change'}
+                name={language === 'gr' ? 'Αλλαγή Τιμής' : 'Price Change'}
               />
               <Line 
                 type="monotone" 
                 dataKey="costChange" 
                 stroke="#ef4444" 
                 strokeWidth={3}
-                name={language === 'el' ? 'Αλλαγή Κόστους' : 'Cost Change'}
+                name={language === 'gr' ? 'Αλλαγή Κόστους' : 'Cost Change'}
               />
               <Line 
                 type="monotone" 
                 dataKey="demandChange" 
                 stroke="#10b981" 
                 strokeWidth={3}
-                name={language === 'el' ? 'Αλλαγή Ζήτησης' : 'Demand Change'}
+                name={language === 'gr' ? 'Αλλαγή Ζήτησης' : 'Demand Change'}
               />
             </LineChart>
           </ResponsiveContainer>
@@ -365,7 +366,7 @@ const ScenarioAnalysis: React.FC<ScenarioAnalysisProps> = ({ baseResults, formDa
         <CardHeader className="bg-gradient-to-r from-green-50 to-emerald-50 border-b border-slate-200">
           <CardTitle className="flex items-center space-x-2 text-slate-800">
             <TrendingUp className="w-5 h-5 text-green-600" />
-            <span>{language === 'el' ? 'Αποθηκευμένα Σενάρια' : 'Saved Scenarios'}</span>
+            <span>{language === 'gr' ? 'Αποθηκευμένα Σενάρια' : 'Saved Scenarios'}</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="p-6">
@@ -387,29 +388,29 @@ const ScenarioAnalysis: React.FC<ScenarioAnalysisProps> = ({ baseResults, formDa
                     </h4>
                     <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-2 text-sm">
                       <div>
-                        <span className="text-slate-600">{language === 'el' ? 'Τιμή:' : 'Price:'} </span>
+                        <span className="text-slate-600">{language === 'gr' ? 'Τιμή:' : 'Price:'} </span>
                         <span className={scenario.priceIncrease >= 0 ? 'text-green-600' : 'text-red-600'}>
                           {scenario.priceIncrease >= 0 ? '+' : ''}{scenario.priceIncrease}%
                         </span>
                       </div>
                       <div>
-                        <span className="text-slate-600">{language === 'el' ? 'Κόστος:' : 'Cost:'} </span>
+                        <span className="text-slate-600">{language === 'gr' ? 'Κόστος:' : 'Cost:'} </span>
                         <span className={scenario.costIncrease <= 0 ? 'text-green-600' : 'text-red-600'}>
                           {scenario.costIncrease >= 0 ? '+' : ''}{scenario.costIncrease}%
                         </span>
                       </div>
                       <div>
-                        <span className="text-slate-600">{language === 'el' ? 'Ζήτηση:' : 'Demand:'} </span>
+                        <span className="text-slate-600">{language === 'gr' ? 'Ζήτηση:' : 'Demand:'} </span>
                         <span className={scenario.demandChange >= 0 ? 'text-green-600' : 'text-red-600'}>
                           {scenario.demandChange >= 0 ? '+' : ''}{scenario.demandChange}%
                         </span>
                       </div>
                       <div>
-                        <span className="text-slate-600">{language === 'el' ? 'Κέρδος:' : 'Profit:'} </span>
+                        <span className="text-slate-600">{language === 'gr' ? 'Κέρδος:' : 'Profit:'} </span>
                         <span className="font-semibold text-blue-600">{scenario.profit.toFixed(2)}€</span>
                       </div>
                       <div>
-                        <span className="text-slate-600">{language === 'el' ? 'Έσοδα:' : 'Revenue:'} </span>
+                        <span className="text-slate-600">{language === 'gr' ? 'Έσοδα:' : 'Revenue:'} </span>
                         <span className="font-semibold text-green-600">{scenario.revenue.toFixed(2)}€</span>
                       </div>
                     </div>
