@@ -3,7 +3,12 @@ import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { useLanguage } from '../contexts/LanguageContext';
 
-export default function AnalysisTab() {
+interface AnalysisTabProps {
+  formData?: any;
+  updateFormData?: (updates: any) => void;
+}
+
+export default function AnalysisTab({ formData, updateFormData }: AnalysisTabProps) {
   const { language } = useLanguage();
   const [batches, setBatches] = useState([]);
 
@@ -14,20 +19,20 @@ export default function AnalysisTab() {
 
   const chartData = batches.map((batch: any, index: number) => ({
     name: `Batch ${index + 1}`,
-    cost: batch.results.totalCost,
-    profit: batch.results.profit,
+    cost: batch.results?.totalCost || 0,
+    profit: batch.results?.profit || 0,
     date: new Date(batch.date).toLocaleDateString(),
   }));
 
   const pieData = batches.length > 0 ? [
     {
       name: language === 'gr' ? 'Κόστος' : 'Cost',
-      value: batches.reduce((sum: number, batch: any) => sum + batch.results.totalCost, 0),
+      value: batches.reduce((sum: number, batch: any) => sum + (batch.results?.totalCost || 0), 0),
       color: '#ef4444'
     },
     {
       name: language === 'gr' ? 'Κέρδος' : 'Profit',
-      value: batches.reduce((sum: number, batch: any) => sum + batch.results.profit, 0),
+      value: batches.reduce((sum: number, batch: any) => sum + (batch.results?.profit || 0), 0),
       color: '#22c55e'
     }
   ] : [];
